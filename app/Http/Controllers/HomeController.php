@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -80,5 +81,15 @@ class HomeController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
         return view('pages.blog_detail')->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'cate_product', 'brand_product', 'blog'));
+    }
+    public function send_mail()
+    {
+        $to_name = "DevNghia";
+        $to_email = "nghiahieumd@gmail.com";
+        $data = array("name" => "Mail từ tài khoản khách hàng", "body" => "Mail gửi về vấn đề xác thực tài khoản");
+        Mail::send('mails.verify_user', $data, function ($message) use ($to_name, $to_email) {
+            $message->to($to_email)->subject('test thử');
+            $message->from($to_email, $to_name);
+        });
     }
 }

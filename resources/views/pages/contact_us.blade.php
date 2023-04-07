@@ -8,7 +8,7 @@
 					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			
                     
 					<div id="gmap" class="contact-map">
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2769.772738495832!2d105.74066011357466!3d21.055404891928568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1668878347107!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1369.3664996428188!2d105.74080054805069!3d21.05304119421094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455e12611f6dd%3A0x25c5aec065422fad!2zTeG7mSBD4buVIE5ndXnDqm4gWMOhLSBWxINuIFRyw6w!5e1!3m2!1svi!2s!4v1680879155396!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>			 		
 			</div>    	
     		<div class="row">  	

@@ -141,3 +141,5 @@ Route::post('/update-blog/{blog_id}', 'App\Http\Controllers\BlogController@updat
 //wishlist
 Route::get('/show-wishlist', 'App\Http\Controllers\WishlistController@show_wishlist');
 Route::post('/add-to-wishlist', 'App\Http\Controllers\WishlistController@add_to_wishlist');
+//send mail
+Route::get('/send-mail', 'App\Http\Controllers\HomeController@send_mail');

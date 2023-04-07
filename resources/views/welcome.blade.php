@@ -72,20 +72,7 @@
 						<div class="logo pull-left">
 							<a href="/trang-chu"><img src="{{asset('frontend/images/logo-shop-dien-thoai-7-removebg-preview.png')}}" width="200px" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
-								</ul>
-							</div>
-							
-							
-						</div>
+						
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -134,8 +121,8 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/trang-chu" class="active">Home</a></li>
-								<li class="dropdown"><a href="/shop">Shop</i></a>
+								<li><a href="/trang-chu" class="active">Trang Chủ</a></li>
+								<li class="dropdown"><a href="/shop">Cửa Hàng</i></a>
                                     {{-- <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
 										<li><a href="product-details.html">Product Details</a></li> 
@@ -144,14 +131,14 @@
 										<li><a href="login.html">Login</a></li> 
                                     </ul> --}}
                                 </li> 
-								<li class="dropdown"><a href="/blog">Blog</i></a>
+								<li class="dropdown"><a href="/blog">Bài viết</i></a>
                                     {{-- <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul> --}}
                                 </li> 
 							
-								<li><a href="/contact-us">Contact</a></li>
+								<li><a href="/contact-us">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -256,7 +243,7 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">© 2022 DevNghia. Tất cả đã được đăng ký bản quyền</p>
+					<p class="pull-left">© 2023 DevNghia. Tất cả đã được đăng ký bản quyền</p>
 				
 				</div>
 			</div>
