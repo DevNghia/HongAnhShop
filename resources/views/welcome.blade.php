@@ -253,13 +253,18 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">© 2022 DevNghia. Tất cả đã được đăng ký bản quyền</p>
-				
+					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
+					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
+					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
+					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
 				</div>
 			</div>
 		</div>
 		
 	</footer><!--/Footer-->
+
+	<!-- fhsdfhgfdhs est comiii  -->
+
 	
 
   
