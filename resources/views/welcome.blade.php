@@ -254,9 +254,6 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
-					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
-					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
-					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
 				</div>
 			</div>
 		</div>
