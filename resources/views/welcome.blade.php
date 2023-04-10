@@ -75,26 +75,42 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
-								@if (Session()->get('customer_id'))
+								
+								<?php
+									$customer_id = Auth::check();
+									if($customer_id!=NULL){
+								?>
+								
+								<form method="POST" action="{{ route('logout') }}">
+                    @csrf
+									<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
+								
 									<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								@else
-									<li><a href="/login-checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								@endif
+								
 								
 								<li class="quanlity"><a href="/show-cart"><i class="fa fa-shopping-cart"></i> 
 									
 									
 									Giỏ hàng</a></li>
-								<?php
-									$customer_id = Session()->get('customer_id');
-									if($customer_id!=NULL){
-								?>
-								<li><a href="/logout-checkout"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+										
+										<li><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                        
+                    </x-responsive-nav-link>
+                </form>
+								
 								<?php
 								}else{
 								?>
-								<li><a href="/login-checkout"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
+								<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+								<li class="quanlity"><a href="/show-cart"><i class="fa fa-shopping-cart"></i> 
+									
+									
+									Giỏ hàng</a></li>
+								<li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 								<?php
 								}
 								?>
