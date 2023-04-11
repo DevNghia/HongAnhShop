@@ -97,6 +97,7 @@
                                         this.closest('form').submit();">
 										
 										<li><i class="fa fa-lock"></i> Đăng xuất</a></li>
+										
                         
                     </x-responsive-nav-link>
                 </form>
@@ -110,11 +111,21 @@
 									
 									
 									Giỏ hàng</a></li>
-								<li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								{{-- <li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li> --}}
 								<?php
 								}
 								?>
 							</ul>
+								<div class="dropdown">
+  <a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    Dropdown trigger
+    <span class="caret"></span>
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+    <li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+  </ul>
+</div>
 						</div>
 					</div>
 				</div>
