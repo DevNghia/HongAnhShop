@@ -111,21 +111,27 @@
 									
 									
 									Giỏ hàng</a></li>
+
+									<li>
+										
+										<div class="dropdown">
+						<a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-lock"></i>Tài Khoản
+							
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="/login">Đăng nhập</a></li><br>
+							<li><a href="/register"> Đăng ký</a></li>
+						</ul>
+						</div>
+									</li>
 								{{-- <li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li> --}}
 								<?php
 								}
 								?>
 							</ul>
-								<div class="dropdown">
-  <a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    Dropdown trigger
-    <span class="caret"></span>
-  </a>
-
-  <ul class="dropdown-menu" aria-labelledby="dLabel">
-    <li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-  </ul>
-</div>
+								
 						</div>
 					</div>
 				</div>
