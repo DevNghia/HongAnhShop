@@ -1,0 +1,138 @@
+body {
+    background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Open Sans", sans-serif;
+    color: #333333;
+}
+
+.box-form {
+    margin: 2% auto;
+    width: 40%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: stretch;
+    justify-content: space-between;
+    box-shadow: 0 0 20px 6px #090b6f85;
+}
+
+@media (max-width: 680px) {
+    .box-form {
+        flex-flow: wrap;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+}
+
+.box-form div {
+    height: auto;
+}
+
+.box-form .main {
+    width: 100%;
+    color: #FFFFFF;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("https://t3.ftcdn.net/jpg/02/88/80/38/360_F_288803822_0CJ8L3gr6w6nGnUeje6pCllCX7s986xz.jpg");
+    background-position:  -140px;
+    overflow: hidden;
+}
+
+.box-form .main .overlay {
+    padding: 50px 60px;
+    width: 100%;
+    height: 100%;
+    background: #5961f9ad;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.box-form .main .overlay h5 {
+    font-size: 4vmax;
+    line-height: 0;
+    margin: 20% auto;
+}
+
+.box-form .main .overlay .other_signup {
+    overflow: hidden;
+}
+
+.box-form .main .overlay p {
+    position: relative;
+    float: left;
+    margin: 0 8% 0 0;
+}
+
+.box-form .main .overlay .icon_osp {
+    overflow: hidden;
+    height: 100%;
+}
+
+.box-form .main .overlay .icon_osp a {
+    position: relative;
+    float: left;
+    background: #3b5998;
+    color: #FFFFFF;
+    width: 20%;
+    margin-right: 20%;
+    padding: 14px 40px;
+    border-radius: 100px;
+    display: inline-block;
+    box-shadow: 0 3px 6px 1px #042d4657;
+    text-decoration: none;
+    text-align: center;
+}
+
+.box-form .main .overlay .icon_osp a:last-child {
+    margin-top: 8px;
+    background: #4285F4;
+}
+
+.box-form .main .overlay .inputs {
+    overflow: hidden;
+}
+
+.box-form .main .overlay input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #B0B3B9;
+    background: transparent;
+    color: #fff;
+}
+
+.box-form .main .overlay input::placeholder {
+    color: #d4d3d3;
+}
+
+.box-form .main .overlay .already-have-account {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-form .main .overlay .already-have-account a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.box-form .main .overlay button {
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 35px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    box-shadow: 0px 4px 20px 0px #206f0aa6;
+    background-image: linear-gradient(135deg, #3eed3e 10%, #40c21c 100%);
+}

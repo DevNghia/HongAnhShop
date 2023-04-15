@@ -58,3 +58,7 @@ require __DIR__ . '/auth.php';
 Route::get('/login2', function () {
     return view('auth2.login');
 })->name('login2');
+
+Route::get('/register2', function () {
+    return view('auth2.register');
+})->name('register2');
