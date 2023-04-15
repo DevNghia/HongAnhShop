@@ -54,3 +54,7 @@ Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['a
 
 
 require __DIR__ . '/auth.php';
+
+Route::get('/login2', function () {
+    return view('auth2.login');
+})->name('login2');
