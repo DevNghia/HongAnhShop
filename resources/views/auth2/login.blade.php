@@ -8,42 +8,48 @@
     <link href="{{asset('frontend/css/loginStyle.css')}}" rel="stylesheet">
 </head>
 <body>
-<div class="box-form">
-	<div class="left">
-		<div class="overlay">
-		<h1>Your satisfaction,<br>my happiness</h1>
-		<p>Sự hài lòng của bạn là niềm hạnh phúc của chúng tôi</p>
-		<span>
-			<p>Đăng nhập bằng</p>
-			<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a> <br>
-			<a href="#"><i class="fa fa-google" aria-hidden="true"></i> Google</a>
-		</span>
-		</div>
-	</div>
+<x-guest-layout>	
+	<x-auth-session-status class="mb-4" :status="session('status')" />
+	<form method="POST" action="{{ route('login') }}">
+        @csrf
+		<div class="box-form">
+			<div class="left">
+				<div class="overlay">
+				<h1>Your satisfaction,<br>my happiness</h1>
+				<p>Sự hài lòng của bạn là niềm hạnh phúc của chúng tôi</p>
+				<span>
+					<p>Đăng nhập bằng</p>
+					<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a> <br>
+					<a href="#"><i class="fa fa-google" aria-hidden="true"></i> Google</a>
+				</span>
+				</div>
+			</div>
 
-    <div class="right">
-		<h5>Đăng nhập</h5>
-		<p>Bạn không có tài khoản? <a href="#">Tạo tài khoản</a> nhanh chóng, đơn giản.</p>
-		<div class="inputs">
-			<input type="text" placeholder="Tên người dùng/ Sdt/ Email">
-			<br>
-			<input type="password" placeholder="Mật khẩu">
-		</div>
-        
-		<br><br>
+			<div class="right">
+				<h5>Đăng nhập</h5>
+				<p>Bạn không có tài khoản? <a href="#">Tạo tài khoản</a> nhanh chóng, đơn giản.</p>
+				<div class="inputs">
+					<input type="text" placeholder="Tên người dùng/ Sdt/ Email">
+					<br>
+					<input type="password" placeholder="Mật khẩu">
+				</div>
 				
-		<div class="remember-me--forget-password">
-			<label>
-				<input type="checkbox" name="item" checked/>
-				<span class="text-checkbox"></span>
-				<span class="ghinho">Ghi nhớ</span>
-			</label>
-			<a href="#">Quên mật khẩu?</a>
+				<br><br>
+						
+				<div class="remember-me--forget-password">
+					<label>
+						<input type="checkbox" name="item" checked/>
+						<span class="text-checkbox"></span>
+						<span class="ghinho">Ghi nhớ</span>
+					</label>
+					<a href="#">Quên mật khẩu?</a>
+				</div>
+					<br>
+					<button>Đăng nhập</button>
+			</div>
+			
 		</div>
-			<br>
-			<button>Đăng nhập</button>
-	</div>
-	
-</div>
+	</form>
+</x-guest-layout>
 </body>
 </html>
