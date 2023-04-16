@@ -143,3 +143,15 @@ Route::get('/show-wishlist', 'App\Http\Controllers\WishlistController@show_wishl
 Route::post('/add-to-wishlist', 'App\Http\Controllers\WishlistController@add_to_wishlist');
 //send mail
 Route::get('/send-mail', 'App\Http\Controllers\HomeController@send_mail');
+
+Route::get('/login2', function () {
+    return view('auth2.login');
+})->name('login2');
+
+Route::get('/register2', function () {
+    return view('auth2.register');
+})->name('register2');
+
+Route::get('/forgot-password2', function () {
+    return view('auth2.forgot-password');
+})->name('forgot-password2');
