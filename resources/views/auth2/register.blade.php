@@ -20,6 +20,7 @@
                     </div>
                 </div>
                 <div class="inputs">
+                    
                     <input type="text" placeholder="Họ tên">
                     <br>
                     <input type="text" placeholder="SĐT/ Email">
@@ -33,8 +34,8 @@
                 <div class="already-have-account">
                     <a href="#">Đã có tài khoản? Đăng nhập</a>
                 </div>
-                    <br>
-                    <button>Đăng ký</button>
+                <br>
+                <button>Đăng ký</button>
             </div>
 		</div>
 	</div>

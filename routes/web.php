@@ -62,3 +62,7 @@ Route::get('/login2', function () {
 Route::get('/register2', function () {
     return view('auth2.register');
 })->name('register2');
+
+Route::get('/forgot-password2', function () {
+    return view('auth2.forgot-password');
+})->name('forgot-password2');

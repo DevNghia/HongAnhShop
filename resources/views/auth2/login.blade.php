@@ -40,8 +40,8 @@
 				</label>
 				<a href="#">Quên mật khẩu?</a>
 			</div>
-				<br>
-				<button>Đăng nhập</button>
+			<br>
+			<button>Đăng nhập</button>
 		</div>
 		
 	</div>

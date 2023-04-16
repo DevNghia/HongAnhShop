@@ -1,0 +1,73 @@
+body {
+    background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Open Sans", sans-serif;
+    color: #333333;
+}
+
+.box-form {
+    margin: 2% auto;
+    width: 36%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: stretch;
+    justify-content: space-between;
+    box-shadow: 0 0 20px 6px #090b6f85;
+    min-width: 450px
+}
+
+.box-form div {
+    height: auto;
+}
+
+.box-form .main {
+    width: 100%;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+.box-form .main .overlay {
+    padding: 50px 60px;
+    width: 100%;
+    height: 100%;
+    background: #171ea7ad;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.box-form .main .overlay .inputs {
+    overflow: hidden;
+}
+
+.box-form .main .overlay input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #B0B3B9;
+    background: transparent;
+    color: #fff;
+}
+
+.box-form .main .overlay input::placeholder {
+    color: #d4d3d3;
+}
+
+.box-form .main .overlay button {
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 35px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    box-shadow: 0px 4px 20px 0px #206f0aa6;
+    background-image: linear-gradient(135deg, #3eed3e 10%, #40c21c 100%);
+}
