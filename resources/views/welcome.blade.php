@@ -80,9 +80,6 @@
 									$customer_id = Auth::check();
 									if($customer_id!=NULL){
 								?>
-								
-								<form method="POST" action="{{ route('logout') }}">
-                    @csrf
 									<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
 								
 									<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
@@ -92,15 +89,18 @@
 									
 									
 									Giỏ hàng</a></li>
+									<li>
+								<form method="POST" action="{{ route('logout') }}">
+                  					  @csrf
+								
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
+										<i class="fa fa-lock"></i> Đăng xuất
 										
-										<li><i class="fa fa-lock"></i> Đăng xuất</a></li>
-										
-                        
                     </x-responsive-nav-link>
                 </form>
+				</li>
 								
 								<?php
 								}else{
