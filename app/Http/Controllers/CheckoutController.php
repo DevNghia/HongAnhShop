@@ -217,7 +217,7 @@ class CheckoutController extends Controller
         $shipping_id = $shipping->shipping_id;
         $checkout_code = substr(md5(microtime()), rand(0, 26), 5);
         $order = new Order();
-        $order->customer_id = Session()->get('customer_id');
+        $order->customer_id = auth()->user()->id;
         $order->shipping_id =  $shipping_id;
         $order->order_status = 1;
         $order->order_code = $checkout_code;

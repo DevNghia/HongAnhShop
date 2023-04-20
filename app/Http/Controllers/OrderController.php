@@ -8,33 +8,34 @@ use App\Models\Orderdetail;
 use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Customer;
+use App\Models\User;
 use App\Models\Voucher;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\App;
 
 class OrderController extends Controller
 {
-    public function print_order($checkout_code)
-    {
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML($this->print_order_convert($checkout_code));
+	public function print_order($checkout_code)
+	{
+		$pdf = App::make('dompdf.wrapper');
+		$pdf->loadHTML($this->print_order_convert($checkout_code));
 
-        return $pdf->stream();
-    }
-    public function print_order_convert($checkout_code)
-    {
-        $order = Order::where('order_code', $checkout_code)->get();
-        $order_details = Orderdetail::where('order_code', $checkout_code)->get();
-        $order = Order::where('order_code', $checkout_code)->get();
-        foreach ($order as $key => $ord) {
-            $customer_id = $ord->customer_id;
-            $shipping_id = $ord->shipping_id;
-        }
-        $customer = Customer::where('customer_id', $customer_id)->first();
-        $shipping = Shipping::where('shipping_id', $shipping_id)->first();
-        $output = '';
+		return $pdf->stream();
+	}
+	public function print_order_convert($checkout_code)
+	{
+		$order = Order::where('order_code', $checkout_code)->get();
+		$order_details = Orderdetail::where('order_code', $checkout_code)->get();
+		$order = Order::where('order_code', $checkout_code)->get();
+		foreach ($order as $key => $ord) {
+			$customer_id = $ord->customer_id;
+			$shipping_id = $ord->shipping_id;
+		}
+		$customer = User::where('id', $customer_id)->first();
+		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
+		$output = '';
 
-        $output .= '<style>body{
+		$output .= '<style>body{
 			font-family: DejaVu Sans;
 		}
 		.table-styling{
@@ -57,16 +58,16 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-        $output .= '		
+		$output .= '		
 					<tr>
-						<td>' . $customer->customer_name . '</td>
+						<td>' . $customer->name . '</td>
 						<td>' . $customer->customer_phone . '</td>
-						<td>' . $customer->customer_email . '</td>
+						<td>' . $customer->email . '</td>
 						
 					</tr>';
 
 
-        $output .= '				
+		$output .= '				
 				</tbody>
 			
 		</table>
@@ -84,7 +85,7 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-        $output .= '		
+		$output .= '		
 					<tr>
 						<td>' . $shipping->shipping_name . '</td>
 						<td>' . $shipping->shipping_address . '</td>
@@ -95,7 +96,7 @@ class OrderController extends Controller
 					</tr>';
 
 
-        $output .= '				
+		$output .= '				
 				</tbody>
 			
 		</table>
@@ -114,20 +115,20 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-        $total = 0;
+		$total = 0;
 
-        foreach ($order_details as $key => $product) {
+		foreach ($order_details as $key => $product) {
 
-            $subtotal = $product->product_price * $product->product_sales_quantity;
-            $total += $subtotal;
+			$subtotal = $product->product_price * $product->product_sales_quantity;
+			$total += $subtotal;
 
-            if ($product->product_voucher != 'no') {
-                $product_voucher = $product->product_voucher;
-            } else {
-                $product_voucher = 'không mã';
-            }
+			if ($product->product_voucher != 'no') {
+				$product_voucher = $product->product_voucher;
+			} else {
+				$product_voucher = 'không mã';
+			}
 
-            $output .= '		
+			$output .= '		
 					<tr>
 						<td>' . $product->product_name . '</td>
 						<td>' . $product_voucher . '</td>
@@ -137,16 +138,16 @@ class OrderController extends Controller
 						<td>' . number_format($subtotal, 0, ',', '.') . 'đ' . '</td>
 						
 					</tr>';
-        }
-        foreach ($order as $key => $ord) {
-            $output .= '<tr>
+		}
+		foreach ($order as $key => $ord) {
+			$output .= '<tr>
 				<td colspan="2">
 					<p>Tổng:' . number_format($ord->order_total, 0, ',', '.') . 'đ' .  ' </p>
 					<p>Thanh toán :' . number_format($ord->order_total_after, 0, ',', '.') . 'đ' . ' </p>
 				</td>
 		</tr>';
-        }
-        $output .= '				
+		}
+		$output .= '				
 				</tbody>
 			
 		</table>
@@ -162,7 +163,7 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-        $output .= '				
+		$output .= '				
 				</tbody>
 			
 		</table>
@@ -170,24 +171,24 @@ class OrderController extends Controller
 		';
 
 
-        return $output;
-    }
-    public function show_order()
-    {
-        $order = Order::orderby('created_at', 'DESC')->get();
-        return view('admin.manage_order')->with(compact('order'));
-    }
-    public function view_order($order_code)
-    {
-        $order_details = Orderdetail::where('order_code', $order_code)->get();
-        $order = Order::where('order_code', $order_code)->get();
-        foreach ($order as $key => $ord) {
-            $customer_id = $ord->customer_id;
-            $shipping_id = $ord->shipping_id;
-        }
-        $customer = Customer::where('customer_id', $customer_id)->first();
-        $shipping = Shipping::where('shipping_id', $shipping_id)->first();
+		return $output;
+	}
+	public function show_order()
+	{
+		$order = Order::orderby('created_at', 'DESC')->get();
+		return view('admin.manage_order')->with(compact('order'));
+	}
+	public function view_order($order_code)
+	{
+		$order_details = Orderdetail::where('order_code', $order_code)->get();
+		$order = Order::where('order_code', $order_code)->get();
+		foreach ($order as $key => $ord) {
+			$customer_id = $ord->customer_id;
+			$shipping_id = $ord->shipping_id;
+		}
+		$customer = User::where('id', $customer_id)->first();
+		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 
-        return view('admin.view_order')->with(compact('order_details', 'order', 'customer', 'shipping'));
-    }
+		return view('admin.view_order')->with(compact('order_details', 'order', 'customer', 'shipping'));
+	}
 }

@@ -1,26 +1,23 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
-//Frontend
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
-use App\Models\Order;
-use Illuminate\Support\Facades\Artisan;
 
-// Route::get('/clear-cache', function () {
-//     $exitCode = Artisan::call('cache:clear');
-// });
+//cart
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index');
@@ -100,7 +97,6 @@ Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart');
 Route::get('/login-checkout', 'App\Http\Controllers\CheckoutController@login_checkout');
 Route::get('/logout-checkout', 'App\Http\Controllers\CheckoutController@logout_checkout');
 Route::post('/add-customer', 'App\Http\Controllers\CheckoutController@add_customer');
-Route::get('/checkout', 'App\Http\Controllers\CheckoutController@checkout');
 Route::post('/save-checkout-customer', 'App\Http\Controllers\CheckoutController@save_checkout_customer');
 Route::post('/login-customer', 'App\Http\Controllers\CheckoutController@login_customer');
 Route::get('/payment', 'App\Http\Controllers\CheckoutController@payment');
@@ -155,3 +151,37 @@ Route::get('/register2', function () {
 Route::get('/forgot-password2', function () {
     return view('auth2.forgot-password');
 })->name('forgot-password2');
+
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['auth', 'verified']);
+
+
+require __DIR__ . '/auth.php';

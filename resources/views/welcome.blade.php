@@ -45,7 +45,7 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> 0393179455</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>8888888888</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> nghiahieumd@gmail.com</a></li>
 							</ul>
 						</div>
@@ -53,10 +53,8 @@
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
@@ -77,30 +75,63 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
-								@if (Session()->get('customer_id'))
+								
+								<?php
+									$customer_id = Auth::check();
+									if($customer_id!=NULL){
+								?>
+									<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
+								
 									<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								@else
-									<li><a href="/login-checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-								@endif
+								
 								
 								<li class="quanlity"><a href="/show-cart"><i class="fa fa-shopping-cart"></i> 
 									
 									
 									Giỏ hàng</a></li>
-								<?php
-									$customer_id = Session()->get('customer_id');
-									if($customer_id!=NULL){
-								?>
-								<li><a href="/logout-checkout"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+									<li>
+								<form method="POST" action="{{ route('logout') }}">
+                  					  @csrf
+								
+                    <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+										<i class="fa fa-lock"></i> Đăng xuất
+										
+                    </x-responsive-nav-link>
+                </form>
+				</li>
+								
 								<?php
 								}else{
 								?>
-								<li><a href="/login-checkout"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								<li><a href="/show-wishlist"><i class="fa fa-heart"></i> Yêu thích</a></li>
+								<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+								<li class="quanlity"><a href="/show-cart"><i class="fa fa-shopping-cart"></i> 
+									
+									
+									Giỏ hàng</a></li>
+
+									<li>
+										
+										<div class="dropdown">
+						<a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-lock"></i>Tài Khoản
+							
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="/login">Đăng nhập</a></li><br>
+							<li><a href="/register"> Đăng ký</a></li>
+						</ul>
+						</div>
+									</li>
+								{{-- <li><a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a></li> --}}
 								<?php
 								}
 								?>
 							</ul>
+								
 						</div>
 					</div>
 				</div>
@@ -244,8 +275,7 @@
 					<p class="pull-left">© 2023 DevNghia. Tất cả đã được đăng ký bản quyền</p>
 				
 ======= --}}
-					<p class="pull-left">Tất cả đã được đăng ký bản quyền</p>
->>>>>>> hungDev
+					<p class="pull-left">© 2023 .Tất cả đã được đăng ký bản quyền</p>
 				</div>
 			</div>
 		</div>
@@ -384,9 +414,9 @@ function(isConfirm){
                       swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                 }
             	});
-				window.setTimeout(function () {
-    location.reload();
-  }, 3000);
+// 				window.setTimeout(function () {
+//     location.reload();
+//   }, 3000);
     
   } else {
     swal("Đóng","Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng","error");

@@ -30,9 +30,9 @@
           <tr>
             
           
-            <td>{{$customer->customer_name}}</td>
+            <td>{{$customer->name}}</td>
            <td>{{$customer->customer_phone}}</td>
-           <td>{{$customer->customer_email}}</td>
+           <td>{{$customer->email}}</td>
             
            
           </tr>

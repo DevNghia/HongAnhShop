@@ -177,18 +177,7 @@
 							
 						</ul>
 							{{-- <a class="btn btn-default update" href="">Update</a> --}}
-							<?php
-									$customer_id = Session()->get('customer_id');
-									if($customer_id!=NULL){
-								?>
-								<a class="btn btn-default check_out" href="/checkout">Đặt hàng</a>
-								<?php
-								}else{
-								?>
-								<a class="btn btn-default check_out" href="/login-checkout">Đặt hàng</a>
-								<?php
-								}
-								?>
+							<a class="btn btn-default check_out" href="/checkout">Đặt hàng</a>
 							
 					</div>
 				</div>
