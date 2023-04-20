@@ -295,6 +295,7 @@
     <script src="{{asset('frontend/js/main.js')}}"></script>
 	<script async defer crossorigin="anonymous" src="{{asset('https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=695872028369099&autoLogAppEvents=1')}}" nonce="j0H0MxnG"></script>
 	<script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+	<script src="{{asset('frontend/js/sort.js')}}"></script>
 	<script>
 		$(document).ready(function(){
 			count_cart();

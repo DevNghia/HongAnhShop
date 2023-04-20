@@ -92,14 +92,26 @@ class CategoryProduct extends Controller
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
-        $category_by_id = DB::table('tbl_product')->join('tbl_category_product', 'tbl_product.category_id', '=', 'tbl_category_product.category_id')->where('tbl_product.category_id', $category_id)->get();
-        foreach ($category_by_id as $key => $value) {
-            $meta_desc = $value->category_desc;
-            $meta_keywords = $value->category_keywords;
-            $meta_title = $value->category_name;
-            $url_canonical = $request->url();
-        }
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id', $category_id)->limit(1)->get();
-        return view('pages.category.show_category')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with('category_by_id', $category_by_id)->with('category_name', $category_name)->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+
+        $category_by_id_query = DB::table('tbl_product')
+            ->join('tbl_category_product', 'tbl_product.category_id', '=', 'tbl_category_product.category_id')
+            ->where('tbl_product.category_id', $category_id);
+
+        $sort_by = $request->input('sort_by');
+        if ($sort_by == 'gian_dan') {
+            $category_by_id_query->orderBy('product_price', 'ASC');
+        } else if ($sort_by == 'tang_dan') {
+            $category_by_id_query->orderBy('product_price', 'DESC');
+        }
+
+        $category_by_id = $category_by_id_query->get();
+
+        $meta_desc = $category_name[0]->category_desc;
+        $meta_keywords = $category_name[0]->category_keywords;
+        $meta_title = $category_name[0]->category_name;
+        $url_canonical = $request->url();
+
+        return view('pages.category.show_category', compact('cate_product', 'brand_product', 'category_name', 'category_by_id', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
     }
 }

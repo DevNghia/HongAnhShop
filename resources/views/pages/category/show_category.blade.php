@@ -1,12 +1,25 @@
 @extends('welcome')
 @section('content')
 <div class="features_items"><!--features_items-->
-	<div class="fb-share-button" data-href="http://localhost:3000/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
 	
+							<div class="row">
+								<div class="col-md-4">
+								<label for="amount">Sắp xếp theo</label>
+								<form action="">
+								@csrf
+								<select name="sort" id="sort" class="form-control">
+									<option value="{{Request::url()}}?sort_by=none">--lọc--</option>
+									<option value="{{Request::url()}}?sort_by=tang_dan">--Giá tăng dần--</option>
+									<option value="{{Request::url()}}?sort_by=giam_dan">--Giá giảm dần--</option>
+								</select>
+								
+							</form>
+							</div>
+							</div>
 					@foreach ($category_name as $key=>$name)
 						<h2 class="title text-center">{{$name->category_name}}</h2>
 					@endforeach
-						
+							
 							@foreach ($category_by_id as $key=>$cate_pro)
 						<a href="/show-detail/{{$cate_pro->product_id}}">
 						<div class="col-sm-4">
