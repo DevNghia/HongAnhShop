@@ -42,8 +42,10 @@
 	    					<p><i class="fa fa-clock-o" aria-hidden="true"></i>  Giờ mở cửa:  </p>
 							<p>Từ thứ 2 đến chủ nhật 7:00 - 21:00</p>
 							<p><i class="fa fa-phone-square" aria-hidden="true"></i> Điện thoại:</p>
-							<p>+84393179455</p>
-							<p>+84854808229</p>
+							<a href="tel:0393179455">0393179455</a></br>
+							<a href="tel:0854808229">0854808229</a>
+							<!-- <p>+84393179455</p> -->
+							<!-- <p>+84854808229</p> -->
 							<p>Email: </p>
 							<p>nghiahieumd@gmail.com</p>
 							<p><i class="fa fa-map-marker" aria-hidden="true"></i>  Địa chỉ:</p>
