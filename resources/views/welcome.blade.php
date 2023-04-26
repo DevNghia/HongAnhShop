@@ -418,7 +418,10 @@ function(isConfirm){
 				var order_total = $('.order_total').val();
 				var order_total_after = $('.order_total_after').val();
 				var _token = $('input[name="_token"]').val();
-				
+					if (!shipping_email || !shipping_name || !shipping_address || !shipping_phone || !shipping_message ) {
+						swal("Lỗi", "Vui lòng nhập đầy đủ thông tin đơn hàng", "error");
+						return;
+					}
 				$.ajax({
                		 url : '{{('/comfirm-order')}}',
                		 method: 'POST',
