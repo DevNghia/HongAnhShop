@@ -111,6 +111,7 @@ Route::get('/show-delivery', 'App\Http\Controllers\CheckoutController@show_deliv
 Route::get('/all-order', 'App\Http\Controllers\OrderController@show_order');
 Route::get('/print-order/{checkout_code}', 'App\Http\Controllers\OrderController@print_order');
 Route::get('/view-order/{order_code}', 'App\Http\Controllers\OrderController@view_order');
+Route::get('/show-ordered', 'App\Http\Controllers\OrderController@show_ordered')->middleware(['auth', 'verified']);
 
 //Login facebook
 Route::get('/login-facebook', 'App\Http\Controllers\AdminController@login_facebook');

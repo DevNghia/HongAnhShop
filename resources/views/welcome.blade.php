@@ -90,17 +90,32 @@
 									
 									Giỏ hàng</a></li>
 									<li>
-								<form method="POST" action="{{ route('logout') }}">
-                  					  @csrf
-								
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-										<i class="fa fa-lock"></i> Đăng xuất
 										
-                    </x-responsive-nav-link>
-                </form>
-				</li>
+										<div class="dropdown">
+						<a id="dLabel" data-target="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-user"></i>{{ Auth::user()->name}}
+							
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="/show-ordered">Lịch sử mua hàng</a></li><br>
+																<li>
+												<form method="POST" action="{{ route('logout') }}">
+													@csrf
+												
+										<x-responsive-nav-link :href="route('logout')"
+											onclick="event.preventDefault();
+														this.closest('form').submit();">
+														Đăng xuất
+														
+										</x-responsive-nav-link>
+										</form>
+									</li>
+						</ul>
+						</div>
+									</li>
+									
+
 								
 								<?php
 								}else{
@@ -115,7 +130,7 @@
 									<li>
 										
 										<div class="dropdown">
-						<a id="dLabel" data-target="#" href="http://example.com/" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<a id="dLabel" data-target="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-lock"></i>Tài Khoản
 							
 						</a>
@@ -415,9 +430,9 @@ function(isConfirm){
                       swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                 }
             	});
-// 				window.setTimeout(function () {
-//     location.reload();
-//   }, 3000);
+				window.setTimeout(function () {
+    location.reload();
+  }, 3000);
     
   } else {
     swal("Đóng","Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng","error");

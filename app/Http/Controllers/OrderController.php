@@ -8,10 +8,11 @@ use App\Models\Orderdetail;
 use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Customer;
-use App\Models\User;
 use App\Models\Voucher;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -31,7 +32,7 @@ class OrderController extends Controller
 			$customer_id = $ord->customer_id;
 			$shipping_id = $ord->shipping_id;
 		}
-		$customer = User::where('id', $customer_id)->first();
+		$customer = Customer::where('customer_id', $customer_id)->first();
 		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 		$output = '';
 
@@ -60,9 +61,9 @@ class OrderController extends Controller
 
 		$output .= '		
 					<tr>
-						<td>' . $customer->name . '</td>
+						<td>' . $customer->customer_name . '</td>
 						<td>' . $customer->customer_phone . '</td>
-						<td>' . $customer->email . '</td>
+						<td>' . $customer->customer_email . '</td>
 						
 					</tr>';
 
@@ -186,9 +187,29 @@ class OrderController extends Controller
 			$customer_id = $ord->customer_id;
 			$shipping_id = $ord->shipping_id;
 		}
-		$customer = User::where('id', $customer_id)->first();
+		$customer = Customer::where('customer_id', $customer_id)->first();
 		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 
 		return view('admin.view_order')->with(compact('order_details', 'order', 'customer', 'shipping'));
+	}
+	public function show_ordered(Request $request)
+	{
+		$cate_product = DB::table('tbl_category_product')->orderBy('category_id', 'desc')->get();
+		$brand_product = DB::table('tbl_brand_product')->orderBy('brand_id', 'desc')->get();
+		$meta_title = "Lịch sử mua hàng";
+		$meta_desc = "các sản phẩm trong giỏ";
+		$meta_keywords = "điện thoại, laptop, sp4, xbox one";
+		$url_canonical = $request->url();
+		$user = Auth::user();
+		$user_id = $user->id;
+		$productPurchasedByUser = DB::table('tbl_order_details')
+			->join('tbl_order', 'tbl_order_details.order_code', '=', 'tbl_order.order_code')
+			->join('users', 'tbl_order.customer_id', '=', 'users.id')
+			->join('tbl_product', 'tbl_order_details.product_id', '=', 'tbl_product.product_id')
+			->select('tbl_order_details.product_id', 'tbl_order_details.product_name', 'tbl_order_details.product_price', 'tbl_order_details.product_sales_quantity', 'tbl_product.product_image', 'tbl_order.order_status')
+			->where('users.id', '=', $user_id)
+			->get();
+
+		return view('pages.ordered.ordered')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'productPurchasedByUser'));
 	}
 }
