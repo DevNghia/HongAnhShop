@@ -127,7 +127,12 @@ class Product extends Controller
     public function show_detail(Request $request, $product_id)
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         $product = DB::table('tbl_product')
             ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
             ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')->where('tbl_product.product_id', $product_id)->get();

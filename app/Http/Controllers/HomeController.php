@@ -20,7 +20,12 @@ class HomeController extends Controller
         $url_canonical = $request->url();
         //seo
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         $product = DB::table('tbl_product')->where('product_status', '1')->orderBy('product_id', 'DESC')->limit(6)->get();
         // return view('pages.home')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with('product', $product);
         return view('pages.home')->with(compact('cate_product', 'brand_product', 'product', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'banner'));
@@ -29,7 +34,12 @@ class HomeController extends Controller
     {
         $keywords = $_GET['keyword_submit'];
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         $search = DB::table('tbl_product')->where('product_status', '1')->where('product_name', 'like', '%' . $keywords . '%')->get();
         $meta_title = $keywords;
         $meta_desc = "Tìm kiếm sản phẩm";
@@ -56,7 +66,12 @@ class HomeController extends Controller
         $meta_keywords = "Tất cả sản phẩm";
         $url_canonical = $request->url();
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         $product = Product::where('product_status', '1')->paginate(6);
         return view('pages.shop')->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'cate_product', 'brand_product', 'product'));
     }
@@ -68,7 +83,12 @@ class HomeController extends Controller
         $meta_keywords = "Bài viết";
         $url_canonical = $request->url();
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         return view('pages.blog')->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'cate_product', 'brand_product', 'blog'));
     }
     public function blog_detail(Request $request, $blog_id)
@@ -79,7 +99,12 @@ class HomeController extends Controller
         $meta_keywords = "Bài viết";
         $url_canonical = $request->url();
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         return view('pages.blog_detail')->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'cate_product', 'brand_product', 'blog'));
     }
     public function send_mail()

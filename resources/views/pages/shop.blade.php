@@ -26,17 +26,22 @@
 											<h2>{{number_format($pro->product_price).' '.'VND'}}</h2>
 											<p>{{$pro->product_name}}</p>
 											</a>
-											<button type="button" class="btn btn-default add-to-cart" data-id_product="{{$pro->product_id}}" name="add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+											<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><button type="button" class="btn btn-default add-to-wishlist" data-id_product="{{$pro->product_id}}" name="add-to-wishlist"><i class="fa fa-heart"></i> Yêu thích</button></li>
+										<li><button type="button" class="btn btn-default add-to-cart" data-id_product="{{$pro->product_id}}" name="add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button></li>
+									</ul>
+								</div>
 											</form>
 										</div>
 										
 								</div>
-								<div class="choose">
+								{{-- <div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Yêu thích</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>So sánh</a></li>
+										<li><a href="#"><i class="fa fa-heart"></i>Yêu thích</a></li>
+										
 									</ul>
-								</div>
+								</div> --}}
 							</div>
 							
 						</div>

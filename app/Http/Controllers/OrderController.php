@@ -8,6 +8,7 @@ use App\Models\Orderdetail;
 use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Customer;
+use App\Models\User;
 use App\Models\Voucher;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\App;
@@ -48,30 +49,8 @@ class OrderController extends Controller
 		</style>
 		<h2><center>Công ty TNHH một thành viên ABCD</center></h2>
 		<h4><center>Đơn hàng</center></h4>
-		<p>Người đặt hàng</p>
-		<table class="table-styling">
-				<thead>
-					<tr>
-						<th>Tên khách đặt</th>
-						<th>Số điện thoại</th>
-						<th>Email</th>
-					</tr>
-				</thead>
-				<tbody>';
-
-		$output .= '		
-					<tr>
-						<td>' . $customer->customer_name . '</td>
-						<td>' . $customer->customer_phone . '</td>
-						<td>' . $customer->customer_email . '</td>
-						
-					</tr>';
-
-
-		$output .= '				
-				</tbody>
-			
-		</table>
+		
+		
 
 		<p>Ship hàng tới</p>
 			<table class="table-styling">
@@ -187,10 +166,11 @@ class OrderController extends Controller
 			$customer_id = $ord->customer_id;
 			$shipping_id = $ord->shipping_id;
 		}
-		$customer = Customer::where('customer_id', $customer_id)->first();
+
+		// $customer = User::where('id', $customer_id)->first();
 		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 
-		return view('admin.view_order')->with(compact('order_details', 'order', 'customer', 'shipping'));
+		return view('admin.view_order')->with(compact('order_details', 'order', 'shipping'));
 	}
 	public function show_ordered(Request $request)
 	{

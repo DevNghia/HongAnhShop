@@ -10,7 +10,12 @@ class WishlistController extends Controller
     public function show_wishlist(Request $request)
     {
         $cate_product = DB::table('tbl_category_product')->orderBy('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand_product')->orderBy('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         $meta_title = "Yêu thích";
         $meta_desc = "Danh sách yêu thích";
         $meta_keywords = "yêu thích";

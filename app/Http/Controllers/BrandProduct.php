@@ -90,8 +90,13 @@ class BrandProduct extends Controller
     public function show_brand(Request $request, $brand_id)
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
-        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->get();
         $brand_by_id = DB::table('tbl_product')->join('tbl_brand_product', 'tbl_product.brand_id', '=', 'tbl_brand_product.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
+        $brand_product = DB::table('tbl_brand_product')
+            ->join('tbl_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
+            ->where('brand_status', '1')
+            ->select('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id', DB::raw('COUNT(*) as product_count'))
+            ->groupBy('tbl_brand_product.brand_name', 'tbl_brand_product.brand_id')
+            ->get();
         foreach ($brand_by_id as $key => $value) {
             $meta_desc = $value->brand_desc;
             $meta_keywords = $value->brand_keywords;

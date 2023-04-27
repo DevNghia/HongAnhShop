@@ -1,56 +1,13 @@
 @extends('admin_layout')
 @section('admin_content')
- <div class="table-agile-info">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Thông tin người mua
-    </div>
-    
-    <?php
-	$message = Session()->get('message');
-	if($message){
-		echo '<span class="tex-aler">'.$message.'</span>';
-		Session()->put('message',null);
-	}
-	?>
-    
-    <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
-        <thead>
-          <tr>
-            
-            <th>Tên khách hàng </th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th style="width:30px;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            
-          
-            <td>{{$customer->customer_name}}</td>
-           <td>{{$customer->customer_phone}}</td>
-           <td>{{$customer->customer_email}}</td>
-            
-           
-          </tr>
-         
-        
-        </tbody>
-      </table>
-    </div>
-    
-  </div>
-</div>
+
         
          
         </div>
  <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Thông tin người vận chuyển
+      Thông tin người mua
     </div>
   
     <?php
