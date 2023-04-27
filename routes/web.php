@@ -121,7 +121,7 @@ Route::get('/add-voucher', 'App\Http\Controllers\VoucherController@add_voucher')
 Route::post('/save-voucher', 'App\Http\Controllers\VoucherController@save_voucher');
 Route::get('/all-voucher', 'App\Http\Controllers\VoucherController@all_voucher');
 Route::get('/delete-voucher/{voucher_id}', 'App\Http\Controllers\VoucherController@delete_voucher');
-Route::post('/check-voucher', 'App\Http\Controllers\VoucherController@check_voucher');
+Route::post('/check-voucher', 'App\Http\Controllers\VoucherController@check_voucher')->middleware(['auth', 'verified']);
 //Delivery
 Route::get('/add-delivery', 'App\Http\Controllers\DeliveryController@delivery');
 Route::post('/select-delivery', 'App\Http\Controllers\DeliveryController@select_delivery');
@@ -184,5 +184,8 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['auth', 'verified']);
 
-
+// Xử lý trang "not found"
+Route::fallback(function () {
+    return view('pages.404');
+});
 require __DIR__ . '/auth.php';

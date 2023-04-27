@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserVoucher;
 use Illuminate\Http\Request;
 use App\Models\Voucher;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 session_start();
@@ -54,35 +56,67 @@ class VoucherController extends Controller
     }
     public function check_voucher(Request $request)
     {
+
         $data = $request->all();
         $voucher = Voucher::where('voucher_code', $data['voucher'])->first();
-        if ($voucher) {
-            $count_voucher = $voucher->count();
-            if ($count_voucher > 0) {
-                $count_session = Session()->get('voucher');
-                if ($count_session == true) {
-                    $is_available = 0;
-                    if ($is_available == 0) {
-                        $cou[] = array(
-                            'voucher_code' => $voucher->voucher_code,
-                            'voucher_condition' => $voucher->voucher_condition,
-                            'voucher_number' => $voucher->voucher_number,
-                        );
-                        Session()->put('voucher', $cou);
-                    }
-                } else {
-                    $cou[] = array(
-                        'voucher_code' => $voucher->voucher_code,
-                        'voucher_condition' => $voucher->voucher_condition,
-                        'voucher_number' => $voucher->voucher_number,
-                    );
-                    Session()->put('voucher', $cou);
-                }
-                Session()->save();
-                return redirect()->back()->with('message', 'Thêm mã giảm thành công');
-            }
-        } else {
-            return redirect()->back()->with('error', 'Mã giảm giá không đúng');
+        $user_id = Auth::user()->id;
+
+
+        if ($voucher == null) {
+            return redirect()->back()->with('error', 'Mã giảm giá không tồn tại');
         }
+        $voucher_time = $voucher->voucher_time;
+        if ($voucher_time == 0) {
+
+            return redirect()->back()->with('error', 'Mã giảm giá đã hết lượt sử dụng');
+        }
+        $userVoucher = UserVoucher::where('user_id', $user_id)
+            ->where('voucher_id', $voucher->voucher_id)
+            ->first();
+        if ($userVoucher) {
+
+            return redirect()->back()->with('error', 'Bạn đã sử dụng mã giảm giá này rồi');
+        }
+        $userVoucher = new UserVoucher();
+        $userVoucher->user_id = $user_id;
+        $userVoucher->voucher_id = $voucher->voucher_id;
+        $voucher->decrement('voucher_time');
+        $userVoucher->save();
+        $cou[] = array(
+            'voucher_code' => $voucher->voucher_code,
+            'voucher_condition' => $voucher->voucher_condition,
+            'voucher_number' => $voucher->voucher_number,
+        );
+        Session()->put('voucher', $cou);
+        Session()->save();
+        return redirect()->back()->with('message', 'Thêm mã giảm thành công');
+        // if ($voucher) {
+        //     $count_voucher = $voucher->count();
+        //     if ($count_voucher > 0) {
+        //         $count_session = Session()->get('voucher');
+        //         if ($count_session == true) {
+        //             $is_available = 0;
+        //             if ($is_available == 0) {
+        //                 $cou[] = array(
+        //                     'voucher_code' => $voucher->voucher_code,
+        //                     'voucher_condition' => $voucher->voucher_condition,
+        //                     'voucher_number' => $voucher->voucher_number,
+        //                 );
+        //                 Session()->put('voucher', $cou);
+        //             }
+        //         } else {
+        //             $cou[] = array(
+        //                 'voucher_code' => $voucher->voucher_code,
+        //                 'voucher_condition' => $voucher->voucher_condition,
+        //                 'voucher_number' => $voucher->voucher_number,
+        //             );
+        //             Session()->put('voucher', $cou);
+        //         }
+        //         Session()->save();
+        //         return redirect()->back()->with('message', 'Thêm mã giảm thành công');
+        //     }
+        // } else {
+        //     return redirect()->back()->with('error', 'Mã giảm giá không đúng');
+        // }
     }
 }

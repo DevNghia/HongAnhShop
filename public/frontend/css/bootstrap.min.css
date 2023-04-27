@@ -1093,7 +1093,7 @@ input,
 select,
 textarea {
     font-family: inherit;
-    font-size: inherit;
+    font-size: x-small;
     line-height: inherit;
 }
 a {
@@ -2392,7 +2392,7 @@ th {
 .table-condensed > tfoot > tr > th,
 .table-condensed > thead > tr > td,
 .table-condensed > thead > tr > th {
-    padding: 5px;
+    padding: 0px;
 }
 .table-bordered {
     border: 1px solid #ddd;
@@ -7174,9 +7174,9 @@ button.close {
 }
 span.tex-aler {
     color: green;
-    font-size: 24px;
+    font-size: 11px;
 }
 span.tex-aler-error {
     color: red;
-    font-size: 24px;
+    font-size: 11px;
 }

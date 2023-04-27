@@ -151,18 +151,20 @@
 						@endforeach
 					</tbody>
 						<td>
+															
 							@if (Session()->get('fee'))
-							<li>
+	
+							
 								<a class="cart_quantity_delete" href="del-fee"><i class="fa fa-times"></i></a>
-								Phí vận chuyển: <span class="delivery">{{number_format(Session()->get('fee')).' '.'vnđ'}}</span></li>
-								<li>Tổng: <span>{{number_format($total+ Session()->get('fee')).' '.'vnđ'}}</span></li>
+								Phí vận chuyển: <span class="delivery">{{number_format(Session()->get('fee')).' '.'vnđ'}}</span><br>
+								Tổng: <span>{{number_format($total+ Session()->get('fee')).' '.'vnđ'}}</span>
 								<input type="hidden" name="order_total" class="order_total" value="{{$total+ Session()->get('fee')}}">
 							    @else 
-								<li>Tổng: <span>{{number_format($total).' '.'vnđ'}}</span></li>
+								Tổng: <span>{{number_format($total).' '.'vnđ'}}</span><br>
 								<input type="hidden" name="order_total" class="order_total" value="{{$total}}">
 						         @endif
-						        <li>
-								Mã giảm : 
+						        <br>
+								Mã giảm:
 								@if (Session()->get('voucher'))
 									@foreach (Session()->get('voucher') as $key =>$vou)
 										@if ($vou['voucher_condition']==1)
@@ -171,14 +173,14 @@
 											<p>
 												@php
 												$total_voucher = (($total+ Session()->get('fee'))*$vou['voucher_number'])/100;
-												echo '<li>Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span></li>'
+												echo 'Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span>'
 												@endphp
 											</p>
 											@else
 											<p>
 												@php
 												$total_voucher = ($total*$vou['voucher_number'])/100;
-												echo '<li>Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span></li>'
+												echo 'Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span>'
 												@endphp
 											</p>
 											@endif	
@@ -188,25 +190,37 @@
 											<p>
 												@php
 												$total_voucher = ($vou['voucher_number']);
-												echo '<li>Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span></li>'
+												echo 'Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span>'
 												@endphp
 											</p>
 										@endif
-										<li>Tiền sau giảm <span>{{number_format($total+Session()->get('fee')-$total_voucher).' '.'vnđ'}}</span></li>
+										Tiền sau giảm <span>{{number_format($total+Session()->get('fee')-$total_voucher).' '.'vnđ'}}</span>
 										<input type="hidden" name="order_total_after" class="order_total_after" value="{{$total+Session()->get('fee')-$total_voucher}}">
 									@endforeach
 								@else
 								
 										<input type="hidden" name="order_total_after" class="order_total_after" value="{{$total+Session()->get('fee')}}">
 								@endif
-							</li>
+							
+									
 							<form action="check-voucher" method="post">
 								@csrf
-							<li><input type="text" name="voucher" placeholder="Nhập voucher...">
-								<span><input type="submit" value="Tính mã giảm giá"></span>
-							</li>
-							</form>
+							<input type="text" name="voucher" placeholder="Nhập voucher...">
+								
+								<span><input type="submit" value="Áp dụng"></span>
 							
+							</form>
+							  <?php
+	$message = Session()->get('message');
+	$error = Session()->get('error');
+	if($message){
+		echo '<span class="tex-aler">'.$message.'</span>';
+		Session()->put('message',null);
+	}else{
+		echo '<span class="tex-aler-error">'.$error.'</span>';
+		Session()->put('error',null);
+	}
+	?>
 						</td>
 						
 					</tr>

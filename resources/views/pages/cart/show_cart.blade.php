@@ -10,6 +10,7 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
+			
 			<div class="table-responsive cart_info">
                 <?php
                     $content =Cart::content();
@@ -143,38 +144,6 @@
 						<ul>
 							
 							<li>Tổng <span>{{number_format($total).' '.'vnđ'}}</span></li>
-							<li>
-								Mã giảm : 
-								@if (Session()->get('voucher'))
-									@foreach (Session()->get('voucher') as $key =>$vou)
-										@if ($vou['voucher_condition']==1)
-											<span>{{$vou['voucher_number']}}%</span>	
-											<p>
-												@php
-												$total_voucher = ($total*$vou['voucher_number'])/100;
-												echo '<li>Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span></li>'
-												@endphp
-											</p>
-										@else  
-											<span>{{number_format($vou['voucher_number']).' '.'vnđ'}}</span>
-											<p>
-												@php
-												$total_voucher = ($vou['voucher_number']);
-												echo '<li>Tổng giảm: <span>'.number_format($total_voucher).' '.'vnđ'.'</span></li>'
-												@endphp
-											</p>
-										@endif
-										<li>Tiền sau giảm <span>{{number_format($total-$total_voucher).' '.'vnđ'}}</span></li>
-									@endforeach
-								@endif
-							</li>
-							<form action="check-voucher" method="post">
-								@csrf
-							<li><input type="text" name="voucher" placeholder="Nhập voucher...">
-								<span><input type="submit" value="Tính mã giảm giá"></span>
-							</li>
-							</form>
-							
 						</ul>
 							{{-- <a class="btn btn-default update" href="">Update</a> --}}
 							<a class="btn btn-default check_out" href="/checkout">Đặt hàng</a>

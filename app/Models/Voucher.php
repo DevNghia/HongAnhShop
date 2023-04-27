@@ -13,4 +13,8 @@ class Voucher extends Model
     ];
     protected $primaryKey = 'voucher_id';
     protected $table = 'tbl_voucher';
+    public function userVoucher()
+    {
+        return $this->hasMany(UserVoucher::class, 'voucher_id', 'voucher_id');
+    }
 }
