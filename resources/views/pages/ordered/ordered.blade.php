@@ -48,15 +48,35 @@
 								<h4>{{$v_content->product_sales_quantity}}</h4>
 
 							</td>
-                            @if ($v_content->order_status == 1)
-                                <td class="cart_status">
-								<h4>Đang vận chuyển</h4>          
+                          <?php
+              if($v_content->order_status==0){
+                ?>
+                  <td class="cart_status">
+								<h4>Đã xử lý</h4>          
 							</td>
-                            @else
-                                <td class="cart_status">
-								<h4>Đã giao</h4>          
+             <?php
+              }else if($v_content->order_status==1){
+              ?>  
+                <td class="cart_status">
+								<h4>Chưa xử lý</h4>          
 							</td>
-                            @endif
+              <?php
+              }elseif ($v_content->order_status==2) {
+              ?>
+               <td class="cart_status">
+								<h4>Đang giao</h4>          
+							</td>
+              <?php
+              }else{
+              ?>
+                <td class="cart_status">
+								<h4>Đã Nhận</h4>          
+							</td>
+              <?php
+              }
+              ?>        
+							</td>
+                       
 
 							
 						</tr>

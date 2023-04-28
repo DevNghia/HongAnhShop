@@ -23,7 +23,7 @@
         <thead>
           <tr>
            
-           <th>Tên shipper </th>
+           <th>Họ tên </th>
             <th>Địa chỉ</th>
             <th>Số điện thoại</th>
             <th>Email</th>
@@ -65,24 +65,20 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
+        <form action="/update-order/{{$order->order_code}}" method="POST">
+          @csrf
+        <select class="input-sm form-control w-sm inline v-middle" name="edit_order">
+          <option value="0">Đã xử xý</option>
+          <option value="1">Chưa xử lý</option>
+          <option value="2">Đang giao</option>
+          <option value="3">Đã nhận</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-default">Cập nhật</button> 
+        </form>               
       </div>
       <div class="col-sm-4">
       </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
+   
     </div>
     <?php
 	$message = Session()->get('message');
@@ -135,17 +131,17 @@
        
         <tr>
           
-       @foreach ($order as $key=>$ord)
-              <td>Tổng: {{number_format($ord->order_total).' '.'VND'}}(đã bao gồm phí phận chuyển)<br>
+    
+              <td>Tổng: {{number_format($order->order_total).' '.'VND'}}(đã bao gồm phí phận chuyển)<br>
                   
-                  @if ($ord->order_total_after==0)
-                       Tiền sau giảm: {{number_format($ord->order_total).' '.'VND'}}
+                  @if ($order->order_total_after==0)
+                       Tiền sau giảm: {{number_format($order->order_total).' '.'VND'}}
                   @else
-                      Tiền sau giảm: {{number_format($ord->order_total_after).' '.'VND'}}
+                      Tiền sau giảm: {{number_format($order->order_total_after).' '.'VND'}}
                   @endif
               </td>
         
-       @endforeach
+  
             
           
           
@@ -163,6 +159,7 @@
        <a target="blank" href="\print-order\{{$detail->order_code}}">In ra PDF</a>
        
       </div>
+     
     </footer>
   </div>
 </div>

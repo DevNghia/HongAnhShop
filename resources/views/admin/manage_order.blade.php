@@ -7,24 +7,20 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
+        <form action="">
+          @csrf
+        <select name="sort_order" id="sort" >
+          <option  value="{{Request::url()}}?sort_by=none">-----Lọc đơn hàng-----</option>
+          <option  value="{{Request::url()}}?sort_by=0">Đã xử xý</option>
+          <option  value="{{Request::url()}}?sort_by=1">Chưa xử lý</option>
+          <option  value="{{Request::url()}}?sort_by=2">Đang giao</option>
+          <option  value="{{Request::url()}}?sort_by=3">Đã nhận</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+           </form>       
       </div>
       <div class="col-sm-4">
       </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
+   
     </div>
     <?php
 	$message = Session()->get('message');
@@ -65,11 +61,19 @@
            <?php
               if($ord->order_status==0){
                 ?>
-                <a href="/unactive-order/{{$ord->order_code}}" >Đã giao</a>
+                <p>Đã xử lý</p>
              <?php
-              }else{
+              }else if($ord->order_status==1){
               ?>  
-              <a href="/active-order/{{$ord->order_code}}" >Đang xử lý</a>
+              <p>Chưa xử lý</p>
+              <?php
+              }elseif ($ord->order_status==2) {
+              ?>
+              <p>Đang giao</p>
+              <?php
+              }else{
+              ?>
+              <p>Đã nhận</p>
               <?php
               }
               ?>

@@ -286,8 +286,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						
-						<li><a href="add-voucher">Thêm Voucher</a></li>
-                        <li><a href="all-voucher">Liệt kê Voucher</a></li>
+						<li><a href="/add-voucher">Thêm Voucher</a></li>
+                        <li><a href="/all-voucher">Liệt kê Voucher</a></li>
                         
                     </ul>
                 </li>
@@ -298,7 +298,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						
-						<li><a href="add-delivery">Quản lý vận chuyển</a></li>
+						<li><a href="/add-delivery">Quản lý vận chuyển</a></li>
                         
                     </ul>
                 </li>
@@ -388,6 +388,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js')}}"></script>
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js')}}"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="{{asset('frontend/js/sort.js')}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script>

@@ -114,6 +114,7 @@ Route::get('/view-order/{order_code}', 'App\Http\Controllers\OrderController@vie
 Route::get('/show-ordered', 'App\Http\Controllers\OrderController@show_ordered')->middleware(['auth', 'verified']);
 Route::get('/unactive-order/{order_code}', 'App\Http\Controllers\OrderController@unactive_order');
 Route::get('/active-order/{order_code}', 'App\Http\Controllers\OrderController@active_order');
+Route::post('/update-order/{order_code}', 'App\Http\Controllers\OrderController@update_order');
 
 //Login facebook
 Route::get('/login-facebook', 'App\Http\Controllers\AdminController@login_facebook');

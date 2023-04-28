@@ -126,9 +126,14 @@
 								<p>{{number_format($v_content->price).' '.'vnđ'}}</p>
 							</td>
 							<td class="cart_quantity">
-								<div class="cart_quantity_button">
+								<form action="/update-quantity-cart" method="post">
+										{{csrf_field()}}
+									{{-- <a class="cart_quantity_up" href=""> - </a> --}}
+									<input class="cart_quantity_input" type="hidden" name="cart_quantity" value="{{$v_content->qty}}" autocomplete="off" size="2">
 									<p>{{$v_content->qty}}</p>
-										
+										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
+									{{-- <a class="cart_quantity_down" href=""> + </a> --}}
+									</form>
 							
 								</div>
 							</td>

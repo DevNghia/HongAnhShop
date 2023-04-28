@@ -163,19 +163,31 @@ class OrderController extends Controller
 
 		return $output;
 	}
-	public function show_order()
+	public function show_order(Request $request)
 	{
-		$order = Order::orderby('created_at', 'DESC')->get();
+
+
+		$sort_by = $request->input('sort_by');
+		if ($sort_by == '0') {
+			$order_sort = Order::where('order_status', '=', 0);
+		} else if ($sort_by == "1") {
+			$order_sort = Order::where('order_status', '=', 1);
+		} else if ($sort_by == "2") {
+			$order_sort = Order::where('order_status', '=', 2);
+		} else {
+			$order_sort = Order::where('order_status', '=', 3);
+		}
+		$order = $order_sort->get();
 		return view('admin.manage_order')->with(compact('order'));
 	}
 	public function view_order($order_code)
 	{
 		$order_details = Orderdetail::where('order_code', $order_code)->get();
-		$order = Order::where('order_code', $order_code)->get();
-		foreach ($order as $key => $ord) {
-			$customer_id = $ord->customer_id;
-			$shipping_id = $ord->shipping_id;
-		}
+		$order = Order::where('order_code', $order_code)->first();
+
+		$customer_id = $order->customer_id;
+		$shipping_id = $order->shipping_id;
+
 
 		// $customer = User::where('id', $customer_id)->first();
 		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
@@ -214,6 +226,23 @@ class OrderController extends Controller
 		$this->AuthLogin();
 		DB::table('tbl_order')->where('order_code', $order_code)->update(['order_status' => 0]);
 		Session()->put('message', 'Đã xử lý');
+		return Redirect::to('all-order');
+	}
+	public function update_order(Request $request, $order_code)
+	{
+		$this->AuthLogin();
+		$data['order_status'] = $request->edit_order;
+		DB::table('tbl_order')->where('order_code', $order_code)->update($data);
+		Session()->put('message', 'Cập nhật đơn hàng thành công');
+		$order_details = Orderdetail::where('order_code', $order_code)->get();
+		$order = Order::where('order_code', $order_code)->first();
+
+		$customer_id = $order->customer_id;
+		$shipping_id = $order->shipping_id;
+
+
+		// $customer = User::where('id', $customer_id)->first();
+		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 		return Redirect::to('all-order');
 	}
 }
