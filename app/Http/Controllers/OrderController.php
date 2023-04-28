@@ -174,8 +174,10 @@ class OrderController extends Controller
 			$order_sort = Order::where('order_status', '=', 1);
 		} else if ($sort_by == "2") {
 			$order_sort = Order::where('order_status', '=', 2);
-		} else {
+		} else if ($sort_by == "3") {
 			$order_sort = Order::where('order_status', '=', 3);
+		} else {
+			$order_sort = Order::orderBy('order_id', 'DESC');
 		}
 		$order = $order_sort->get();
 		return view('admin.manage_order')->with(compact('order'));
