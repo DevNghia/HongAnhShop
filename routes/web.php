@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 //cart
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index');
+Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index')->name('main');
 Route::get('/search-product', 'App\Http\Controllers\HomeController@search_product');
 Route::get('/show-category/{category_id}', 'App\Http\Controllers\CategoryProduct@show_category');
 Route::get('/show-brand/{brand_id}', 'App\Http\Controllers\BrandProduct@show_brand');
@@ -112,6 +112,8 @@ Route::get('/all-order', 'App\Http\Controllers\OrderController@show_order');
 Route::get('/print-order/{checkout_code}', 'App\Http\Controllers\OrderController@print_order');
 Route::get('/view-order/{order_code}', 'App\Http\Controllers\OrderController@view_order');
 Route::get('/show-ordered', 'App\Http\Controllers\OrderController@show_ordered')->middleware(['auth', 'verified']);
+Route::get('/unactive-order/{order_code}', 'App\Http\Controllers\OrderController@unactive_order');
+Route::get('/active-order/{order_code}', 'App\Http\Controllers\OrderController@active_order');
 
 //Login facebook
 Route::get('/login-facebook', 'App\Http\Controllers\AdminController@login_facebook');
@@ -154,7 +156,9 @@ Route::get('/forgot-password2', function () {
 })->name('forgot-password2');
 
 
-
+Route::get('/dash', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -119,7 +119,7 @@
 								<a href=""><img src="{{'/uploads/product/'.$v_content->options->image}}"  width="50px" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">{{$v_content->name}}</a></h4>
+								<h6>{{$v_content->name}}</h6>
 								<p>Mã ID:{{$v_content->id}}</p>
 							</td>
 							<td class="cart_price">
@@ -127,14 +127,9 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<form action="/update-quantity-cart" method="post">
-										{{csrf_field()}}
-									{{-- <a class="cart_quantity_up" href=""> - </a> --}}
-									<input class="cart_quantity_input" type="number" name="cart_quantity" value="{{$v_content->qty}}" autocomplete="off" size="2">
-										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
-									<input type="submit" value="Cập nhật"  class="btn btn-default btn-sm">
-									{{-- <a class="cart_quantity_down" href=""> + </a> --}}
-									</form>
+									<p>{{$v_content->qty}}</p>
+										
+							
 								</div>
 							</td>
 							<td class="cart_total">
@@ -143,9 +138,7 @@
 								</p>
 							</td>
 
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="/delete-cart/{{$v_content->rowId}}"><i class="fa fa-times"></i></a>
-							</td>
+							
 						</tr>
 
 						@endforeach

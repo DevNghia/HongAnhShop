@@ -263,7 +263,7 @@ a#scrollUp i {
 .search_box input {
     background: #f0f0e9;
     border: medium none;
-    color: #b2b2b2;
+    color: black;
     font-family: "roboto";
     font-size: 12px;
     font-weight: 300;

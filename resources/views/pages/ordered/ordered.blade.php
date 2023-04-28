@@ -18,7 +18,7 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Hình ảnh</td>
+							<td class="image">Hình ảnh</td> 
 							<td class="description">Tên sản phẩm</td>
 							<td class="price">Giá</td>
 							<td class="quantity">Số lượng</td>

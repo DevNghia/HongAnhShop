@@ -14,9 +14,19 @@ use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
+	public function AuthLogin()
+	{
+		$admin_id = Session()->get('admin_id');
+		if ($admin_id) {
+			return Redirect::to('/dashboard');
+		} else {
+			return Redirect::to('/admin')->send();
+		}
+	}
 	public function print_order($checkout_code)
 	{
 		$pdf = App::make('dompdf.wrapper');
@@ -191,5 +201,19 @@ class OrderController extends Controller
 			->get();
 
 		return view('pages.ordered.ordered')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'productPurchasedByUser'));
+	}
+	public function unactive_order($order_code)
+	{
+		$this->AuthLogin();
+		DB::table('tbl_order')->where('order_code', $order_code)->update(['order_status' => 1]);
+		Session()->put('message', 'Chưa xử lý');
+		return Redirect::to('all-order');
+	}
+	public function active_order($order_code)
+	{
+		$this->AuthLogin();
+		DB::table('tbl_order')->where('order_code', $order_code)->update(['order_status' => 0]);
+		Session()->put('message', 'Đã xử lý');
+		return Redirect::to('all-order');
 	}
 }

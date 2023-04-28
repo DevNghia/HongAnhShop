@@ -1093,7 +1093,7 @@ input,
 select,
 textarea {
     font-family: inherit;
-    font-size: x-small;
+    font-size: medium;
     line-height: inherit;
 }
 a {

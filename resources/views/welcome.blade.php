@@ -99,6 +99,7 @@
 
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li><a href="/show-ordered">Lịch sử mua hàng</a></li><br>
+							<li><a href="/profile">Thông tin tài khoản</a></li>
 																<li>
 												<form method="POST" action="{{ route('logout') }}">
 													@csrf

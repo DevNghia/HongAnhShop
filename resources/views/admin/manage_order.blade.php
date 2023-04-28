@@ -55,11 +55,26 @@
             <td>{{$i++}}</td>
          <td>{{$ord->order_code}}</td>
          <td>{{$ord->created_at}}</td>
-         @if ($ord->order_status==1)
+         {{-- @if ($ord->order_status==1)
              <td>Đơn hàng mới</td>
          @else
               <td>Đã xử lý</td>
-         @endif
+         @endif --}}
+         
+         <td>
+           <?php
+              if($ord->order_status==0){
+                ?>
+                <a href="/unactive-order/{{$ord->order_code}}" >Đã giao</a>
+             <?php
+              }else{
+              ?>  
+              <a href="/active-order/{{$ord->order_code}}" >Đang xử lý</a>
+              <?php
+              }
+              ?>
+         </td>
+        
             <td>
               <a href="/view-order/{{$ord->order_code}}" class="active" ui-toggle-class=""><i class="fa fa-eye text-success text-active"></i></a>
                <a href="/delete-order" onclick="return confirm('Bạn chắc có muốn xóa đơn hàng không')" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
