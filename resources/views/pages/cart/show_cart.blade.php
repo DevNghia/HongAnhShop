@@ -53,7 +53,7 @@
 									<form action="/update-quantity-cart" method="post">
 										{{csrf_field()}}
 									{{-- <a class="cart_quantity_up" href=""> - </a> --}}
-									<input class="cart_quantity_input" type="number" name="cart_quantity" value="{{$v_content->qty}}" autocomplete="off" size="2">
+									<input class="cart_quantity_input" type="number" max="8" name="cart_quantity" value="{{$v_content->qty}}" autocomplete="off" size="2">
 										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
 									<input type="submit" value="Cập nhật"  class="btn btn-default btn-sm">
 									{{-- <a class="cart_quantity_down" href=""> + </a> --}}

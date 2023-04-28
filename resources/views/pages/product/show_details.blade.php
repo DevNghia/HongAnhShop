@@ -3,6 +3,8 @@
 @include('pages.inc.sibar_left')
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easyzoom@2.5.3/css/easyzoom.css" />
+<script src="https://cdn.jsdelivr.net/npm/easyzoom@2.5.3/src/easyzoom.js"></script>
     <div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
                         @foreach ($product as $key=>$pro)
@@ -10,10 +12,10 @@
                         
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="/uploads/product/{{$pro->product_image}}" alt="" />
-								<h3>ZOOM</h3>
+								<img class="mainimage" src="/uploads/product/{{$pro->product_image}}" alt="" />
+								
 							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
+							{{-- <div id="similar-product" class="carousel slide" data-ride="carousel">
 								
 								  <!-- Wrapper for slides -->
 								    <div class="carousel-inner">
@@ -42,7 +44,7 @@
 								  <a class="right item-control" href="#similar-product" data-slide="next">
 									<i class="fa fa-angle-right"></i>
 								  </a>
-							</div>
+							</div> --}}
 
 						</div>
 
@@ -56,8 +58,7 @@
 									{{csrf_field()}}
 								<span>
 									<span>{{number_format($pro->product_price).' '.'VND'}}</span>
-									<label>Số lượng:</label>
-									<input name="qty" type="number" min="1" value="1" />
+									<input name="qty" type="hidden" value="1" />
 									<input name="productid_hidden" type="hidden"  value="{{$pro->product_id}}" />
 									<a href="/save-cart">
 									<button type="submit" class="btn btn-fefault cart">
