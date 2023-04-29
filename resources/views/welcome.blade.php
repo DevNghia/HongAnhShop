@@ -47,7 +47,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i>8888888888</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> nghiahieumd@gmail.com</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> honganh88@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>

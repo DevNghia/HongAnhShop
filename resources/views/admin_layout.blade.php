@@ -231,7 +231,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="{{asset('frontend/images/2.png')}}">
+                <img alt="" src="{{asset('frontend/images/300736725_1039930450059151_8384543145385054594_n.jpg')}}">
                 <span class="username">
                     <?php 
                     $name = Session::get('admin_name');
@@ -244,8 +244,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
             
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+               
                 <li><a href="/logout"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
@@ -370,11 +369,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 </section>
  <!-- footer -->
-		  <div class="footer">
-			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-			</div>
-		  </div>
+		  
   <!-- / footer -->
 </section>
 <!--main content end-->

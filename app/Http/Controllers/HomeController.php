@@ -16,7 +16,7 @@ class HomeController extends Controller
         $banner = Banner::where('banner_status', '1')->get();
         $meta_desc = "Chuyên bán những phụ kiện điện tử";
         $meta_keywords = "điện thoại, laptop, máy tính bảng, phụ kiện điện tử";
-        $meta_title = "Fptshop.com.vn | Điện thoại, Laptop, Tablet, Phụ kiện chính hãng giá tốt nhất";
+        $meta_title = "HongAnhShop";
         $url_canonical = $request->url();
         //seo
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->get();
