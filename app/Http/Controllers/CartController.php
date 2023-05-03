@@ -110,7 +110,9 @@ class CartController extends Controller
     {
 
         Cart::remove($rowId);
-        // cart::destroy();
+        if (Cart::count() == 0) {
+            Session()->forget('voucher', 'fee');
+        }
         return Redirect::to('/show-cart');
     }
     public function update_quantity_cart(Request $request)

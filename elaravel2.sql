@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 28, 2023 lúc 08:37 AM
+-- Thời gian đã tạo: Th4 29, 2023 lúc 10:49 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.4
 
@@ -123,7 +123,7 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
-(4, 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'DevNghia', '1665189844', NULL, NULL),
+(4, 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Đỗ Hồng Anh', '1665189844', NULL, NULL),
 (5, 'nghiahieumd@gmail.com', '', 'Nguyễn Chí Nghĩa', '', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -344,7 +344,8 @@ INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status
 (64, 18, 92, '1', '470e5', 3690000, 3690000, '2023-04-26 11:11:49', NULL),
 (65, 18, 93, '1', '90349', 134950000, 134950000, '2023-04-26 11:13:48', NULL),
 (66, 18, 94, '1', '62cec', 4500000, 4500000, '2023-04-26 14:50:38', NULL),
-(67, 18, 95, '1', '6a8e3', 3690000, 3690000, '2023-04-27 08:38:30', NULL);
+(67, 18, 95, '1', '6a8e3', 3690000, 3690000, '2023-04-27 08:38:30', NULL),
+(68, 18, 96, '2', '81a8f', 22180000, 22180000, '2023-04-28 08:43:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -387,7 +388,9 @@ INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`,
 (49, '470e5', 41, 'OPPO A55 4GB-64GB', 3690000.00, 'không có', '10000', 1, NULL, NULL),
 (50, '90349', 39, 'OPPO Find X5 Pro 12GB - 256GB', 26990000.00, 'không có', '10000', 5, NULL, NULL),
 (51, '62cec', 38, 'Lenovo Tab M10 64GB (Gen2)', 4490000.00, 'không có', '10000', 1, NULL, NULL),
-(52, '6a8e3', 41, 'OPPO A55 4GB-64GB', 3690000.00, 'không có', '10000', 1, NULL, NULL);
+(52, '6a8e3', 41, 'OPPO A55 4GB-64GB', 3690000.00, 'không có', '10000', 1, NULL, NULL),
+(53, '81a8f', 41, 'OPPO A55 4GB-64GB', 3690000.00, 'không có', '10000', 1, NULL, NULL),
+(54, '81a8f', 40, 'OPPO Reno8 Pro 5G 12GB - 256GB', 18490000.00, 'không có', '10000', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1224,7 +1227,8 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 (92, 'Nguyễn Chí Nghĩa', 'nghiahieumd@gmail.com', '1234563456', 'Sóc Sơn', 'dsfsfd', 0, NULL, NULL),
 (93, 'nghia', 'nghiahieumd@gmail.com', '1234234534', 'ád', 'áda', 0, NULL, NULL),
 (94, 'Devnghia', 'nghiahieumd@gmail.com', '234123423', 'Mai Đình', 'sdf', 0, NULL, NULL),
-(95, 'ádasd', 'nghiahieumd@gmail.com', 'ád', 'Hà Nội', 'ád', 0, NULL, NULL);
+(95, 'ádasd', 'nghiahieumd@gmail.com', 'ád', 'Hà Nội', 'ád', 0, NULL, NULL),
+(96, 'ád', 'ád', '123456', 'ád', 'ád', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12812,13 +12816,13 @@ ALTER TABLE `tbl_feeship`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
@@ -12830,7 +12834,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`

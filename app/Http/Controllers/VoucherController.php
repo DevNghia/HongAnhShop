@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserVoucher;
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -77,11 +78,10 @@ class VoucherController extends Controller
 
             return redirect()->back()->with('error', 'Bạn đã sử dụng mã giảm giá này rồi');
         }
-        $userVoucher = new UserVoucher();
-        $userVoucher->user_id = $user_id;
-        $userVoucher->voucher_id = $voucher->voucher_id;
-        $voucher->decrement('voucher_time');
-        $userVoucher->save();
+        if (Cart::count() == 0) {
+            Session()->forget('voucher');
+        }
+
         $cou[] = array(
             'voucher_code' => $voucher->voucher_code,
             'voucher_condition' => $voucher->voucher_condition,
@@ -118,5 +118,10 @@ class VoucherController extends Controller
         // } else {
         //     return redirect()->back()->with('error', 'Mã giảm giá không đúng');
         // }
+    }
+    public function del_vou()
+    {
+        Session()->forget('voucher');
+        return redirect()->back();
     }
 }

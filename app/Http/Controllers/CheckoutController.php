@@ -14,6 +14,9 @@ use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\Orderdetail;
+use App\Models\UserVoucher;
+use App\Models\Voucher;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -57,6 +60,9 @@ class CheckoutController extends Controller
         $meta_keywords = "...";
         $url_canonical = $request->url();
         $city = City::orderby('matp', 'ASC')->get();
+        if (Cart::count() == 0) {
+            return Redirect::to('/show-cart');
+        }
         return view('pages.checkout.checkout')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'city'));
     }
     public function save_checkout_customer(Request $request)
@@ -227,6 +233,13 @@ class CheckoutController extends Controller
         $order->created_at = now();
         $order->save();
         $content = Cart::content();
+        $user_id = Auth::user()->id;
+        $voucher = Voucher::where('voucher_code', $data['order_voucher'])->first();
+        $userVoucher = new UserVoucher();
+        $userVoucher->user_id = $user_id;
+        $userVoucher->voucher_id = $voucher->voucher_id;
+        $voucher->decrement('voucher_time');
+        $userVoucher->save();
         if (Session()->get('cart') == true) {
 
             foreach ($content as $key => $cart) {

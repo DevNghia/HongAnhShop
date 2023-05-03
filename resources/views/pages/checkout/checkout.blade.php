@@ -162,8 +162,10 @@
 								<input type="hidden" name="order_total" class="order_total" value="{{$total}}">
 						         @endif
 						        <br>
-								Mã giảm:
+							
 								@if (Session()->get('voucher'))
+									<a class="cart_quantity_delete" href="del-vou"><i class="fa fa-times"></i></a>
+								Mã giảm:
 									@foreach (Session()->get('voucher') as $key =>$vou)
 										@if ($vou['voucher_condition']==1)
 											<span>{{$vou['voucher_number']}}%</span>
