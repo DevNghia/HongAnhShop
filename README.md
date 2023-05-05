@@ -1,5 +1,3 @@
-# Travel Backend
-
 ## Installation Guid
 
 ### Prerequisite
