@@ -356,6 +356,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
+                 </li>
+                  <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Khách hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="/all-account">Quản lý khách hàng</a></li>
+                        
+                    </ul>
+                </li>
                 
             </ul>            </div>
         <!-- sidebar menu end-->

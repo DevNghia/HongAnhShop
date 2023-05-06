@@ -142,6 +142,10 @@ Route::post('/update-blog/{blog_id}', 'App\Http\Controllers\BlogController@updat
 //wishlist
 Route::get('/show-wishlist', 'App\Http\Controllers\WishlistController@show_wishlist');
 Route::post('/add-to-wishlist', 'App\Http\Controllers\WishlistController@add_to_wishlist');
+
+//User
+Route::get('/all-account', 'App\Http\Controllers\AdminController@all_account');
+Route::get('/delete-account/{account_id}', 'App\Http\Controllers\AdminController@delete_account');
 //send mail
 Route::get('/send-mail', 'App\Http\Controllers\HomeController@send_mail');
 

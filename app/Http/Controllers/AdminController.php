@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Models\Social;
+use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -112,5 +113,18 @@ class AdminController extends Controller
             Session()->put('admin_id', $account_name->admin_id);
             return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
         }
+    }
+    public function all_account()
+    {
+        $this->AuthLogin();
+        $account = User::orderby('id', 'DESC')->get();
+        return view('admin.all_account')->with(compact('account'));
+    }
+    public function delete_account($account_id)
+    {
+        $account = User::find($account_id);
+        $account->delete();
+        Session()->put('message', 'Xóa người dùng thành công!');
+        return Redirect::to('all-account');
     }
 }
