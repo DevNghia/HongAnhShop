@@ -81,7 +81,7 @@
         
             <td>
               <a href="/view-order/{{$ord->order_code}}" class="active" ui-toggle-class=""><i class="fa fa-eye text-success text-active"></i></a>
-               <a href="/delete-order" onclick="return confirm('Bạn chắc có muốn xóa đơn hàng không')" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+               <a href="/delete-order/{{$ord->order_id}}" onclick="return confirm('Bạn chắc có muốn xóa đơn hàng không')" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
         @endforeach

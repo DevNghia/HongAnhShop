@@ -115,7 +115,7 @@ Route::get('/show-ordered', 'App\Http\Controllers\OrderController@show_ordered')
 Route::get('/unactive-order/{order_code}', 'App\Http\Controllers\OrderController@unactive_order');
 Route::get('/active-order/{order_code}', 'App\Http\Controllers\OrderController@active_order');
 Route::post('/update-order/{order_code}', 'App\Http\Controllers\OrderController@update_order');
-
+Route::get('/delete-order/{order_id}', 'App\Http\Controllers\OrderController@delete_order');
 //Login facebook
 Route::get('/login-facebook', 'App\Http\Controllers\AdminController@login_facebook');
 Route::get('/admin/callback', 'App\Http\Controllers\AdminController@callback_facebook');

@@ -247,4 +247,11 @@ class OrderController extends Controller
 		$shipping = Shipping::where('shipping_id', $shipping_id)->first();
 		return Redirect::to('all-order');
 	}
+	public function delete_order($order_code)
+	{
+		$order = Order::find($order_code);
+		$order->delete();
+		Session()->put('message', 'Xóa đơn hàng thành công!');
+		return Redirect::to('all-order');
+	}
 }

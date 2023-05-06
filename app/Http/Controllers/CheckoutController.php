@@ -236,10 +236,13 @@ class CheckoutController extends Controller
         $user_id = Auth::user()->id;
         $voucher = Voucher::where('voucher_code', $data['order_voucher'])->first();
         $userVoucher = new UserVoucher();
-        $userVoucher->user_id = $user_id;
-        $userVoucher->voucher_id = $voucher->voucher_id;
-        $voucher->decrement('voucher_time');
-        $userVoucher->save();
+        if (isset($voucher) && isset($userVoucher)) {
+            $userVoucher->user_id = $user_id;
+            $userVoucher->voucher_id = $voucher->voucher_id;
+            $voucher->decrement('voucher_time');
+            $userVoucher->save();
+        }
+
         if (Session()->get('cart') == true) {
 
             foreach ($content as $key => $cart) {
