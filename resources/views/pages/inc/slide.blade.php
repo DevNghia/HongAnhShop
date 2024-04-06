@@ -12,7 +12,7 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-11">
-									<img width="100%" src="{{asset('frontend/images/vivo-v25-pro-sliding-pre.jpg')}}"  />
+									<img width="100%" src="{{asset('frontend/images/slider_1.jpg')}}"  />
 								</div>
 								
 							</div>
