@@ -14,7 +14,7 @@
 						</div><!--/category-products-->
 					
 						<div class="brands_products"><!--brands_products-->
-							<h2>Thương hiệu</h2>
+							<h2>Nhà xuất bản</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									@foreach ($brand_product as $key=>$brand_pro)
@@ -27,7 +27,7 @@
 						</div><!--/brands_products-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<img src="{{asset('frontend/images/mau-thiet-ke-giam-gia-iphone-400x400.jpg')}}" alt="" />
+							<img src="{{asset('frontend/images/teema-betsu-chukyu-kara-manabu-nihongo-workbook-247x296.jpg')}}" alt="" />
 						</div><!--/shipping-->
 					
 					</div>

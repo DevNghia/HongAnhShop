@@ -69,7 +69,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="/trang-chu"><img src="{{asset('frontend/images/logo-shop-dien-thoai-7-removebg-preview.png')}}" width="200px" alt="" /></a>
+							<a href="/trang-chu"><img src="{{asset('frontend/images/logo_3-min.jpg')}}" width="200px" alt="" /></a>
 						</div>
 						
 					</div>
