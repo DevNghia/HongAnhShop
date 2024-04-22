@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('main') }}">
-                        <img src="{{asset('frontend/images/logo-shop-dien-thoai-7-removebg-preview.png')}}" width="200px" alt="" />
+                        <img width="95px" src="{{asset('frontend/images/LT_Book.jpg')}}" width="200px" alt="" />
                     </a>
                 </div>
 

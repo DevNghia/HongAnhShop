@@ -47,7 +47,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i>8888888888</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> nghiahieumd@gmail.com</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> lamtruong@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="/trang-chu"><img src="{{asset('frontend/images/logo_3-min.jpg')}}" width="200px" alt="" /></a>
+							<a href="/trang-chu"><img src="{{asset('frontend/images/LT_Book.jpg')}}" width="200px" alt="" /></a>
 						</div>
 						
 					</div>

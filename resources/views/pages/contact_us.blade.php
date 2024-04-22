@@ -45,7 +45,7 @@
 							<p>+84393179455</p>
 							<p>+84854808229</p>
 							<p>Email: </p>
-							<p>nghiahieumd@gmail.com</p>
+							<p>lamtruong@gmail.com</p>
 							<p><i class="fa fa-map-marker" aria-hidden="true"></i>  Địa chỉ:</p>
 							<p>Ngõ 66 Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội</p>
 	    				</address>

@@ -231,14 +231,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="{{asset('frontend/images/profile.png')}}">
+                <img alt="" src="{{asset('frontend/images/435759117_1158686171925278_6538919916724235425_n.jpg')}}">
                 <span class="username">
-                    <?php 
-                    $name = Session::get('admin_name');
-                    if($name){
-                        echo $name;
-                    }    
-                    ?>
+                   Nguyễn Lam Trường
                 </span>
                 <b class="caret"></b>
             </a>

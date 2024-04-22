@@ -24,7 +24,7 @@
 												<input type="hidden" value="1" class="cart_product_qty_{{$pro->product_id}}">
 												<input name="productid_hidden" type="hidden"  value="{{$pro->product_id}}" />
 											<a href="/show-detail/{{$pro->product_id}}">
-											<img src="/uploads/product/{{$pro->product_image}}" alt="" />
+											<img  src="/uploads/product/{{$pro->product_image}}" alt="" />
 											<h2>{{number_format($pro->product_price).' '.'VND'}}</h2>
 											<p>{{$pro->product_name}}</p>
 											</a>
