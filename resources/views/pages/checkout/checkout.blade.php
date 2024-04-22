@@ -37,7 +37,7 @@
 								@endif
 								
 
-								<label  for="exampleInputEmail1">Chọn hình thức thanh toán</label>
+								<!-- <label  for="exampleInputEmail1">Chọn hình thức thanh toán</label>
 								 <select name="payment_select" class="form-control input-sm m-bot15 payment_select">
                                         
                                     <option value="0">Thanh toán bằng chuyển khoản</option>
@@ -45,9 +45,9 @@
 									
 
                                     
-                                   </select>
+                                   </select> -->
                                
-							 <form role="form" id="formValidation" action="insert-delivery" method="post">
+							 <!-- <form role="form" id="formValidation" action="insert-delivery" method="post">
                                     {{ csrf_field() }}
                                
                                 <div class="form-group">
@@ -80,7 +80,7 @@
                                 
                                 <input type="button" value="Tính phí vận chuyển" name="caculate_order" id="" class="btn btn-primary btn-sm calculate_delivery">
                                 
-                            </form>
+                            </form> -->
 							
 						</div>
 					</div>

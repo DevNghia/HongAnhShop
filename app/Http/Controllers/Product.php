@@ -56,6 +56,35 @@ class Product extends Controller
         Session()->put('message', 'Thêm sản phẩm thành công');
         return Redirect::to('add-product');
     }
+    // public function save_product(Request $request)
+    // {
+    //     $this->AuthLogin();
+    //     $data = array();
+    //     $data['product_name'] = $request->product_name;
+    //     $data['product_price'] = $request->product_price;
+    //     $data['product_desc'] = $request->product_desc;
+    //     $data['product_content'] = $request->product_content;
+    //     $data['category_id'] = $request->product_cate;
+    //     $data['brand_id'] = $request->product_brand;
+    //     $data['product_status'] = $request->product_status;
+    //     $data['product_keywords'] = $request->product_keywords;
+    //     $get_image = $request->file('product_image');
+
+    //     if ($get_image) {
+    //         $get_name_image = $get_image->getClientOriginalName();
+    //         $name_image = current(explode('.', $get_name_image));
+    //         $new_image = $name_image . '.' . $get_image->getClientOriginalExtension();
+    //         $get_image->move('/uploads/product', $new_image);
+    //         $data['product_image'] = $new_image;
+    //         DB::table('tbl_product')->insert($data);
+    //         Session()->put('message', 'Thêm sản phẩm thành công');
+    //         return Redirect::to('add-product');
+    //     }
+    //     $data['product_image'] = '';
+    //     DB::table('tbl_product')->insert($data);
+    //     Session()->put('message', 'Thêm sản phẩm thành công');
+    //     return Redirect::to('add-product');
+    // }
     public function all_product()
     {
         $this->AuthLogin();
