@@ -58,17 +58,32 @@
 									{{csrf_field()}}
 								<span>
 									<span>{{number_format($pro->product_price).' '.'VND'}}</span>
-									<input name="qty" type="hidden" value="1" />
+									
 									<input name="productid_hidden" type="hidden"  value="{{$pro->product_id}}" />
-									<a href="/save-cart">
-									<button type="submit" class="btn btn-fefault cart">
-										<i  class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
+									
+										@if ($pro->quantity>0)
+										<a href="/save-cart">
+										<button type="submit" class="btn btn-fefault cart">
+											<i  class="fa fa-shopping-cart"></i>
+											Add to cart
+										</button>
 									</a>
+									<input class="qty" type="number" min="1" max={{$pro->quantity}} name="qty" value="1" autocomplete="off" size="2">
+										@else
+											
+										@endif
+									
+									
 								</span>
 								</form>
+								@if ($pro->quantity>0)
 								<p><b>Tình trạng:</b> Còn hàng</p>
+								@else
+								<p><b>Tình trạng:</b> Hết hàng</p>
+								@endif
+								
+								
+								
 								<p><b>Điều kiện:</b> Mới 100%</p>
 								<p><b>Thương hiệu:</b> {{$pro->brand_name}}</p>
 								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>

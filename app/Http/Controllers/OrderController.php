@@ -209,11 +209,13 @@ class OrderController extends Controller
 		$productPurchasedByUser = DB::table('tbl_order_details')
 			->join('tbl_order', 'tbl_order_details.order_code', '=', 'tbl_order.order_code')
 			->join('users', 'tbl_order.customer_id', '=', 'users.id')
+			->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
 			->join('tbl_product', 'tbl_order_details.product_id', '=', 'tbl_product.product_id')
-			->select('tbl_order_details.product_id', 'tbl_order_details.product_name', 'tbl_order_details.product_price', 'tbl_order_details.product_sales_quantity', 'tbl_product.product_image', 'tbl_order.order_status')
+			->select('tbl_shipping.shipping_name', 'tbl_shipping.shipping_phone', 'tbl_shipping.shipping_address', 'tbl_order_details.product_id', 'tbl_order_details.product_name', 'tbl_order_details.product_price', 'tbl_order_details.product_sales_quantity', 'tbl_product.product_image', 'tbl_order.order_status')
 			->where('users.id', '=', $user_id)
+			->orderBy('tbl_shipping.shipping_id', 'desc')
 			->get();
-
+		// dd($productPurchasedByUser);
 		return view('pages.ordered.ordered')->with('cate_product', $cate_product)->with('brand_product', $brand_product)->with(compact('meta_title', 'meta_desc', 'meta_keywords', 'url_canonical', 'productPurchasedByUser'));
 	}
 	public function unactive_order($order_code)

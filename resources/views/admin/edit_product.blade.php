@@ -28,6 +28,10 @@
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
                                     <input type="text" name="product_price" value="{{$edit_pro->product_price}}" class="form-control" id="exampleInputEmail1" >
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Số lượng</label>
+                                    <input type="text" name="quantity" value="{{$edit_pro->quantity}}" class="form-control" id="exampleInputEmail1" >
+                                </div>
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                                     <input type="file"name="product_image" value="{{$edit_pro->product_image}}" class="form-control" id="exampleInputEmail1" >

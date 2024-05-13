@@ -104,6 +104,8 @@ Route::post('/order-place', 'App\Http\Controllers\CheckoutController@order_place
 Route::post('/select-delivery-home', 'App\Http\Controllers\CheckoutController@select_delivery_home');
 Route::get('/del-fee', 'App\Http\Controllers\CheckoutController@del_fee');
 Route::post('/comfirm-order', 'App\Http\Controllers\CheckoutController@comfirm_order');
+//VNPAY
+Route::post('/vnpay_payment', 'App\Http\Controllers\CheckoutController@vnpay_payment');
 
 Route::post('/calculate-delivery', 'App\Http\Controllers\CheckoutController@calculate_delivery');
 Route::get('/show-delivery', 'App\Http\Controllers\CheckoutController@show_delivery');

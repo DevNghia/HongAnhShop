@@ -107,6 +107,7 @@ class Product extends Controller
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $data['product_keywords'] = $request->product_keywords;
+        $data['quantity'] = $request->quantity;
         $get_image = $request->file('product_image');
 
         if ($get_image) {

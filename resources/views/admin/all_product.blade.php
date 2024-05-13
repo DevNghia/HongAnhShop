@@ -25,6 +25,7 @@
             </th>
             <th>Tên sản phẩm</th>
             <th>Giá bán</th>
+            <th>Số lượng</th>
             <th>Hình ảnh</th>
             <th>Mô tả</th>
             <th>Nội dung</th>
@@ -41,6 +42,7 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->product_name}}</td>
             <td>{{$pro->product_price}}</td>
+            <td>{{$pro->quantity}}</td>
             <td><img src="/uploads/product/{{$pro->product_image}}" width="50px" ></td>
             <td>{{$pro->product_desc}}</td>
             <td>{!!$pro->product_content!!}</td>

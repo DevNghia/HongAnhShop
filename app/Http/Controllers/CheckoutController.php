@@ -14,9 +14,11 @@ use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\Orderdetail;
+use App\Models\Product;
 use App\Models\UserVoucher;
 use App\Models\Voucher;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class CheckoutController extends Controller
 {
@@ -211,6 +213,7 @@ class CheckoutController extends Controller
     }
     public function comfirm_order(Request $request)
     {
+
         $data = $request->all();
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
@@ -246,21 +249,109 @@ class CheckoutController extends Controller
         if (Session()->get('cart') == true) {
 
             foreach ($content as $key => $cart) {
-                $order_detail = new Orderdetail();
-                $order_detail->order_code = $checkout_code;
-                $order_detail->product_id = $cart->id;
-                $order_detail->product_name = $cart->name;
-                $order_detail->product_price = $cart->price;
-                $order_detail->product_voucher = $data['order_voucher'];
-                $order_detail->product_fee = $data['order_fee'];
-                $order_detail->product_sales_quantity = $cart->qty;
-                $order_detail->save();
+                $product = Product::find($cart->id);
+                if ($product) {
+                    // Cập nhật cột quantity của sản phẩm
+                    $product->quantity = $product->quantity - $cart->qty;
+                    $product->save();
+                    $order_detail = new Orderdetail();
+                    $order_detail->order_code = $checkout_code;
+                    $order_detail->product_id = $cart->id;
+                    $order_detail->product_name = $cart->name;
+                    $order_detail->product_price = $cart->price;
+                    $order_detail->product_voucher = $data['order_voucher'];
+                    $order_detail->product_fee = $data['order_fee'];
+                    $order_detail->product_sales_quantity = $cart->qty;
+                    $order_detail->save();
+                }
             }
+            // if ($data['payment_select'] == 0) {
+            //     // return 'ádadsassad';
+            //     // $this->vnpay_payment();
+            //     return Redirect::to("https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=20000000&vnp_Command=pay&vnp_CreateDate=20240512021926&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+test&vnp_OrderType=billpayment&vnp_ReturnUrl=http%3A%2F%2F127.0.0.1%3A8000%2Fcheckout&vnp_TmnCode=POZV3SM0&vnp_TxnRef=bfggd&vnp_Version=2.1.0&vnp_SecureHash=f868e509871e9a97a1c880b266b148caddae9b85f4af2482087c11a8f40b949b72ecd54886cd26d7840bff571b0fa51b8e37da49a19ea633784d3283bd382e61");
+            // }
         }
         Session()->forget('voucher');
         Session()->forget('fee');
         Session()->forget('cart');
     }
+    public function vnpay_payment(Request $request)
+    {
+
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://127.0.0.1:8000/checkout";
+        $vnp_TmnCode = "POZV3SM0"; //Mã website tại VNPAY 
+        $vnp_HashSecret = "E086N10NOML4XM9I26BEWWH2Z1OBHU3Y"; //Chuỗi bí mật
+
+        $vnp_TxnRef = substr(md5(microtime()), rand(0, 26), 5); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang vnpay
+
+        $vnp_OrderInfo = "Thanh toán đơn test";
+        $vnp_OrderType = 'billpayment';
+        $vnp_Amount = $request->total * 100;
+        $vnp_Locale = 'vn';
+        // $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+
+
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            // return $returnData['data'];
+            // return Redirect::to($returnData['data']);
+
+            echo json_encode($returnData);
+        }
+    }
+
+
+
     public function show_delivery()
     {
         $cart = Session()->get('fee');

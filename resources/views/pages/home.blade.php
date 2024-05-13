@@ -31,7 +31,12 @@
 											<div class="choose">
 									<ul class="nav nav-pills nav-justified">
 										<li><button type="button" class="btn btn-default add-to-wishlist" data-id_product="{{$pro->product_id}}" name="add-to-wishlist"><i class="fa fa-heart"></i> Yêu thích</button></li>
+										@if ($pro->quantity>0)
 										<li><button type="button" class="btn btn-default add-to-cart" data-id_product="{{$pro->product_id}}" name="add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button></li>
+										@else
+											
+										@endif
+										
 									</ul>
 								</div>
 										</div>

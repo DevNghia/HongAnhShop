@@ -22,8 +22,10 @@
 							<td class="description">Tên sản phẩm</td>
 							<td class="price">Giá</td>
 							<td class="quantity">Số lượng</td>
+							<td class="infos">Thông tin người nhận</td>
                             <td class="total">Trạng thái</td>
-							<td></td>
+						
+						
 						</tr>
 					</thead>
 					<tbody>
@@ -46,6 +48,13 @@
 							</td>
 							<td class="cart_quantity">
 								<h4>{{$v_content->product_sales_quantity}}</h4>
+
+							</td>
+							<td class="cart_infos" style="width:20%">
+								{{$v_content->shipping_name}},
+									{{$v_content->shipping_address}}
+								
+								
 
 							</td>
                           <?php
@@ -77,7 +86,7 @@
               ?>        
 							</td>
                        
-
+							
 							
 						</tr>
 
